@@ -18,7 +18,9 @@ import random
 # ===========================
 # 50 coches
 # 4 surtidores
-#
+# 2 tipos de combustible
+# cadasuritidor tiene una cola de 5 coches como max
+
 
 
 def arrancar_todo(procesos) -> None:
@@ -45,7 +47,7 @@ def poner_gasolina(id_coche :int, nombre_combustible: str, cola: Queue) -> None:
             cola.put([id_coche, num_coches_gasolina, nombre_combustible],
                      block=True, timeout=1)
             num_coches_gasolina += 1
-            print(Fore.YELLOW+"+ Coche"+Fore.WHITE, id_coche, "con", nombre_combustible)
+            print(Fore.YELLOW+"+ Coche"+Fore.WHITE, id_coche, "con", nombre_combustible, "surtidor", num_coches_gasolina)
         except:
             print(Fore.RED+"+ Surtidor", id_coche,
                   "esta  vacio---> noo hay  coches", num_coches_gasolina, "<----------"+Fore.WHITE)
@@ -128,9 +130,9 @@ def main() -> None:
     print("·")
 
     # Crear colas (una por comida) capacidad máxima para 5 elementos
-    max_gasolina = 2
+    max_gasolina = 5
     cola_gasolina = Queue(max_gasolina)
-    max_diesel=2
+    max_diesel=5
     cola_diesel = Queue(max_diesel)
 
     # Crear procesos
